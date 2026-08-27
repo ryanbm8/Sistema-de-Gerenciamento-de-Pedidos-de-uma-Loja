@@ -1,190 +1,126 @@
-Sistema de Gerenciamento de Pedidos
+# Sistema de Gerenciamento de Pedidos
 Projeto de Avaliação do 3 Semestre na ETB
 
-Sobre o projeto
+## Sobre o projeto
 
-Este projeto consiste em um sistema de gerenciamento de pedidos, desenvolvido para representar o processo de compra e entrega de produtos.
+Este projeto representa um sistema de gerenciamento de pedidos de uma loja. O sistema foi desenvolvido com base em um Modelo Entidade-Relacionamento (MER) e em um Diagrama de Classes UML.
 
-O sistema permite relacionar clientes, pedidos, produtos, fornecedores e entregadores, organizando as informações necessárias para registrar uma compra e sua entrega.
+A aplicação permite representar clientes, pedidos, produtos, fornecedores e entregadores, organizando as informações necessárias para realizar e entregar uma compra.
 
-O projeto foi modelado utilizando um Modelo Entidade-Relacionamento (MER) e um Diagrama de Classes UML, representando tanto a estrutura do banco de dados quanto a estrutura orientada a objetos do sistema.
+## Funcionamento
 
-Funcionamento do sistema
+O sistema tem como principal elemento o **Pedido**, que possui informações como código, data, status e valor total.
 
-O funcionamento principal começa com o Cliente, que realiza um Pedido.
+Um pedido está relacionado a um **Cliente**, que realiza a compra, e a um **Entregador**, responsável pela entrega.
 
-Cada pedido possui:
+Os pedidos também podem possuir diferentes tipos de produtos:
 
-Código;
-Data;
-Status;
-Valor total.
+- Prato
+- Bebida
+- Sobremesa
 
-O pedido também está relacionado ao cliente responsável pela compra e ao entregador responsável pela entrega.
+## Produtos
 
-O Entregador possui informações como matrícula, nome, endereço, telefone, e-mail e veículo.
+Os produtos são representados pela classe abstrata **Produto**, que possui atributos comuns:
 
-Produtos
+- Código
+- Nome
+- Preço
 
-O sistema trabalha com três tipos de produtos:
+A classe Produto possui três especializações:
 
-Prato
-Bebida
-Sobremesa
+### Prato
 
-No diagrama de classes, essas três classes herdam características da classe abstrata Produto.
+Possui informações específicas como:
 
-A classe Produto possui:
+- Descrição
+- Tipo
 
-Código;
-Nome;
-Preço;
-Método exibirDetalhes().
+### Bebida
 
-Essa estrutura permite utilizar herança para representar diferentes tipos de produtos dentro do sistema.
+Possui:
 
-Prato
+- Tamanho
+- Informação se é alcoólica
 
-A classe Prato possui características específicas:
+### Sobremesa
 
-Descrição;
-Tipo.
-Bebida
+Possui:
 
-A classe Bebida possui:
+- Sabor
+- Peso
 
-Tamanho;
-Informação sobre ser alcoólica.
-Sobremesa
+## Cliente
 
-A classe Sobremesa possui:
+O sistema possui a classe **Cliente**, que representa as pessoas que realizam os pedidos.
 
-Sabor;
-Peso.
-Cliente
+O cliente possui informações como:
 
-O sistema possui uma classe abstrata Pessoa, que contém informações comuns às pessoas cadastradas.
+- CPF
+- Data de cadastro
 
-Os atributos da classe Pessoa são:
+Além disso, herda informações da classe abstrata **Pessoa**, como nome, endereço, telefone e e-mail.
 
-Nome;
-Endereço;
-Telefone;
-E-mail.
+## Entregador
 
-A classe Cliente herda essas características e possui também:
+A classe **Entregador** representa a pessoa responsável por realizar as entregas.
 
-CPF;
-Data de cadastro.
-Entregador
+Possui informações específicas como:
 
-O Entregador também herda características da classe Pessoa.
+- Matrícula
+- Veículo
 
-Além dos atributos comuns, possui:
+Também herda os dados básicos da classe **Pessoa**.
 
-Matrícula;
-Veículo.
+## Fornecedor
 
-Dessa forma, o sistema consegue representar o entregador responsável por um determinado pedido.
+A classe **Fornecedor** representa as empresas responsáveis pelo fornecimento dos produtos.
 
-Fornecedor
+Possui:
 
-Os produtos possuem relacionamento com a classe Fornecedor.
+- Nome
+- CNPJ
+- Número do contrato
 
-O fornecedor possui:
+Os produtos possuem relacionamento com um fornecedor.
 
-Nome;
-CNPJ;
-Número do contrato.
+## Pedido
 
-No MER, Fornecedor também está relacionado às entidades de produtos, permitindo identificar o fornecedor de pratos, bebidas e sobremesas.
+A classe **Pedido** representa a compra realizada pelo cliente.
 
-Pedido
+Possui os seguintes atributos:
 
-O Pedido é a principal entidade de relacionamento do sistema.
+- Código
+- Data
+- Status
+- Total
 
-Ele possui:
+O pedido possui relacionamentos com:
 
-codigo
-data
-status
-total
+- Cliente
+- Entregador
+- Prato
+- Bebida
+- Sobremesa
 
-Além disso, está relacionado a:
+## Estrutura do projeto
 
-Cliente;
-Entregador;
-Prato;
-Bebida;
-Sobremesa.
+```text
+Pessoa
+├── Cliente
+└── Entregador
 
-Isso permite representar quais informações estão envolvidas em uma compra e em seu processo de entrega.
-
-Estrutura do projeto
-
-A estrutura conceitual pode ser representada da seguinte maneira:
-
-                 Pessoa
-                /      \
-               /        \
-          Cliente      Entregador
-              \          /
-               \        /
-                 Pedido
-                /  |  \
-               /   |   \
-           Prato Bebida Sobremesa
-              \    |      /
-               \   |     /
-                Fornecedor
-Modelo de dados
-
-O MER representa as principais tabelas do banco:
-
-Cliente
-    ↓
-Pedido
-    ├── Prato
-    ├── Bebida
-    └── Sobremesa
-
-Entregador
-    ↓
-Pedido
+Produto
+├── Prato
+├── Bebida
+└── Sobremesa
 
 Fornecedor
-    ↓
-Prato
-Bebida
-Sobremesa
+     ↓
+  Produtos
 
-No banco de dados, o Pedido possui referências para o cliente, entregador e produtos, enquanto os produtos possuem referência ao fornecedor.
-
-Tecnologias e conceitos
-
-O projeto utiliza conceitos de:
-
-Java;
-Programação Orientada a Objetos (POO);
-UML;
-Diagrama de Classes;
-Modelo Entidade-Relacionamento (MER);
-Classes abstratas;
-Herança;
-Associação entre classes;
-Modelagem de banco de dados.
-Objetivo
-
-O objetivo do projeto é modelar um sistema de gerenciamento de pedidos, aplicando conceitos de orientação a objetos e modelagem de banco de dados.
-
-A utilização de classes abstratas e herança permite organizar os elementos do sistema de maneira estruturada, enquanto o MER representa como essas informações podem ser armazenadas e relacionadas em um banco de dados.
-
-Diagrama
-
-O projeto possui dois modelos principais:
-
-MER — representa as entidades, atributos e relacionamentos do banco de dados.
-Diagrama de Classes — representa as classes, atributos, métodos, herança e relacionamentos da aplicação.
-Resumo
-
-Em resumo, o projeto representa uma loja que recebe pedidos de clientes, trabalha com diferentes tipos de produtos, possui fornecedores para esses produtos e utiliza entregadores para realizar as entregas. O diagrama de classes organiza esses elementos utilizando conceitos de POO, principalmente abstração e herança, enquanto o MER representa sua estrutura para um banco de dados.
+Cliente
+     ↓
+   Pedido
+     ↓
+Entregador
