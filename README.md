@@ -1,7 +1,7 @@
-##Sistema de Gerenciamento de Pedidos##
+Sistema de Gerenciamento de Pedidos
 Projeto de Avaliação do 3 Semestre na ETB
 
-##Sobre o projeto##
+Sobre o projeto
 
 Este projeto consiste em um sistema de gerenciamento de pedidos, desenvolvido para representar o processo de compra e entrega de produtos.
 
